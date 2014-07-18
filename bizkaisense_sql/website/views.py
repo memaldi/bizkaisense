@@ -16,7 +16,7 @@ from model_sqlalchemy import *
 
 from website.forms import *
 
-from sqlalchemy import create_engine, func
+from sqlalchemy import create_engine, func, and_
 from sqlalchemy.orm import sessionmaker, aliased
 from sqlalchemy.sql.expression import alias
 
@@ -31,6 +31,8 @@ lim_values = {
     'http://sweet.jpl.nasa.gov/2.3/matrCompound.owl#CO': [10000, "Valor máximo de las medias octohorarias móviles del día"],
     'http://sweet.jpl.nasa.gov/2.3/matrElementalMolecule.owl#O3': [180, "Valor medio en 1 hora"],
 }
+
+WATER_YEARS = [2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013]
 
 
 def json_response(func):
@@ -83,6 +85,19 @@ def index(request):
             station["id"] = st.code
 
             stations.append(station)
+
+    water_sources_list = []
+    details["water_sources"] = water_sources_list
+    water_sources = session.query(WaterSource).all()
+    for ws in water_sources:
+        water_source = {}
+        water_source["lat"] = ws.latitud
+        water_source["lng"] = ws.longitud
+        water_source["id"] = ws.id
+        water_source["zona"] = ws.zona
+        water_source["captacion"] = ws.captacion
+
+        water_sources_list.append(water_source)
 
     session.close()
     return render_to_response('index.html', details, context_instance=RequestContext(request))
@@ -173,6 +188,60 @@ def station(request, stid):
     session.close()
     return render_to_response('station.html', details, context_instance=RequestContext(request))
 
+def water(request, stid):
+    session = Session()
+    details = {}
+    details['id'] = stid
+    details['parametros'] = []
+    water_source = session.query(WaterSource).filter_by(id=stid).first()
+
+    if request.POST:
+        year = int(request.POST['year'])
+    else:
+        year = 2013
+
+    for parametro in session.query(WaterSample.parametro).filter_by(zona=water_source.zona).distinct().order_by(WaterSample.parametro):
+        details['parametros'].append((parametro[0], parametro[0].replace('_', ',')))
+
+    if request.POST:
+        print request.POST
+        parametro = (request.POST['parametro'], request.POST['parametro'].replace('_', ','))
+    else:
+        if len(details['parametros']) > 0:
+            parametro = details['parametros'][0]
+        else:
+            parametro = ''
+    details['parametro_select'] = parametro
+
+    details['selected_year'] = year
+    details['zona'] = water_source.zona
+
+    details['years'] = WATER_YEARS
+    details['samples'] = []
+
+    details['captaciones'] = []
+    related_sources = session.query(WaterSource).filter_by(zona=water_source.zona)
+    for rs in related_sources:
+        captacion = {'provincia': rs.provincia, 'municipio': rs.municipio.replace('_', ','), 'tipo_elemento': rs.tipo_elemento, 'captacion': rs.captacion}
+        details['captaciones'].append(captacion)
+
+    water_samples = session.query(WaterSample).filter_by(zona=water_source.zona, parametro=parametro[0]).filter(and_(WaterSample.fecha >= '%s-01-01' % year, WaterSample.fecha <= '%s-12-31' % year)).order_by(WaterSample.fecha)
+
+    for ws in water_samples:
+        sample_dict = {}
+        sample_dict['municipio'] = ws.municipio
+        sample_dict['punto_muestreo'] = ws.punto_muestreo
+        sample_dict['tipo_punto'] = ws.tipo_punto
+        sample_dict['laboratorio'] = ws.laboratorio
+        sample_dict['motivo'] = ws.motivo
+        sample_dict['calificacion'] = ws.calificacion
+        sample_dict['resultado'] = ws.resultado.replace('_', ',')
+        sample_dict['fecha'] = ws.fecha
+        details['unidad'] = ws.unidad
+        details['samples'].append(sample_dict)
+        #details['parametro_select'] = (ws.parametro, ws.parametro.replace('_', ','))
+    return render_to_response('water.html', details, context_instance=RequestContext(request))
+
 @json_response
 def api_obs_day(request, stid, propid, date):
     session = Session()
@@ -206,10 +275,10 @@ def api_obs_day(request, stid, propid, date):
     #return HttpResponse(json.dumps(resp), mimetype="application/x-javascript")
 
 def endpoint(request):
-    return render_to_response('endpoint.html')
+    return render_to_response('endpoint.html', context_instance=RequestContext(request))
 
 def docs(request):
-    return render_to_response('docs.html')
+    return render_to_response('docs.html', context_instance=RequestContext(request))
 
 @json_response
 def api_outlimit_stations(request, propid, startdate, enddate, limit):

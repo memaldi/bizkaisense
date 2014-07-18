@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-16 12:24+0200\n"
+"POT-Creation-Date: 2014-06-10 10:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,93 +26,164 @@ msgstr "ERROR 404: Page not found."
 msgid "ERROR 500: Server error."
 msgstr "ERROR 500: Server error."
 
-#: templates/base.html:48 templates/index.html:11
-msgid "Air quality monitoring stations"
+#: templates/base.html:57
+msgid "Index"
 msgstr ""
 
-#: templates/base.html:49
-msgid "Air quality calculation"
-msgstr ""
-
-#: templates/base.html:50
+#: templates/base.html:58
 msgid "SNORQL Endpoint"
 msgstr "SNORQL Endpoint"
 
-#: templates/base.html:51
-msgid "SPARQL Endpoint (POST)"
-msgstr "SPARQL Endpoint (POST)"
-
-#: templates/base.html:52
+#: templates/base.html:59
 #, fuzzy
 msgid "Documentation"
 msgstr "Documentation"
 
 #: templates/docs.html:8
+msgid "API"
+msgstr ""
+
+#: templates/docs.html:10
+#, python-format
+msgid ""
+" \n"
+"Data can be queried programatically through the SPARQL endpoint at %(url)s. "
+"The syntax is the following:\n"
+"<div class=\"well\">\n"
+" %(query)s\n"
+"</div>\n"
+msgstr ""
+
+#: templates/docs.html:18
+msgid "Source Code"
+msgstr ""
+
+#: templates/docs.html:21
 msgid "Data sources"
 msgstr ""
 
-#: templates/docs.html:9
+#: templates/docs.html:22
 #, python-format
 msgid ""
 "\n"
-"Source data extracted from %(start_url)s Basque Government's Environment and "
-"Regional Policy department%(end_url)s.\n"
+"Source data extracted from %(start_url)s Open Data Euskadi %(end_url)s.\n"
 msgstr ""
 
-#: templates/docs.html:13
+#: templates/docs.html:26
 msgid "Data model"
 msgstr ""
 
-#: templates/docs.html:15
+#: templates/docs.html:28
 #, python-format
 msgid ""
 "\n"
-"Data extration process and data model are described on the following paper "
+"Data extraction process and data model are described on the following paper "
 "(%(paper_url)s):\n"
+msgstr ""
+
+#: templates/index.html:11
+msgid "Air quality monitoring stations and drinking water quality measurements"
 msgstr ""
 
 #: templates/index.html:14
 msgid ""
 "In this map you can find the air quality monitoring stations from Basque "
-"Country."
+"Country and the measurements done to ensure the quality of the drinking "
+"water."
 msgstr ""
 
 #: templates/index.html:15
-msgid "Click on each station to find its data about air quality:"
+msgid ""
+"Click on each marker to find the data about air or drinking water quality:"
 msgstr ""
 
-#: templates/index.html:64
+#: templates/index.html:66 templates/index.html.py:109
 msgid "Show details"
 msgstr ""
 
-#: templates/index.html:65
+#: templates/index.html:67
 msgid "More information in"
 msgstr ""
 
-#: templates/index.html:65
+#: templates/index.html:67
 msgid "its webpage"
 msgstr ""
 
-#: templates/station.html:24
+#: templates/station.html:25
 msgid "Select the stat you want to see:"
 msgstr ""
 
-#: templates/station.html:40
+#: templates/station.html:41
 msgid "*About the limit value:"
 msgstr ""
 
-#: templates/station.html:44
+#: templates/station.html:45
 msgid "Hour"
 msgstr ""
 
-#: templates/station.html:45
+#: templates/station.html:46
 msgid "Measurement"
 msgstr ""
 
-#: templates/station.html:46
+#: templates/station.html:47
 msgid "RDF"
 msgstr "RDF"
 
-#: templates/station.html:60
+#: templates/station.html:61
 msgid "No results found"
 msgstr ""
+
+#: templates/water.html:12
+msgid "Parameter"
+msgstr ""
+
+#: templates/water.html:31
+msgid "Submit"
+msgstr ""
+
+#: templates/water.html:38
+msgid "Date"
+msgstr ""
+
+#: templates/water.html:39 templates/water.html.py:87
+msgid "Municipality"
+msgstr ""
+
+#: templates/water.html:40
+msgid "Sampling point"
+msgstr ""
+
+#: templates/water.html:41
+msgid "Point type"
+msgstr ""
+
+#: templates/water.html:42
+msgid "Laboratory"
+msgstr ""
+
+#: templates/water.html:43
+msgid "Cause"
+msgstr ""
+
+#: templates/water.html:44
+msgid "Rating"
+msgstr ""
+
+#: templates/water.html:45
+msgid "Value"
+msgstr ""
+
+#: templates/water.html:91
+msgid "Province"
+msgstr ""
+
+#: templates/water.html:95
+msgid "Element type"
+msgstr ""
+
+#, fuzzy
+#~ msgid "SPARQL Endpoint"
+#~ msgstr "SNORQL Endpoint"
+
+#~ msgid "SPARQL Endpoint (POST)"
+#~ msgstr "SPARQL Endpoint (POST)"

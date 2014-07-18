@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-16 12:27+0200\n"
+"POT-Creation-Date: 2014-06-10 10:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: templates/404.html:6
-#, fuzzy
 msgid "ERROR 404: Page not found."
 msgstr "404 ERROREA: ezin da orrialdea aurkitu-"
 
@@ -27,101 +26,185 @@ msgstr "404 ERROREA: ezin da orrialdea aurkitu-"
 msgid "ERROR 500: Server error."
 msgstr "500 ERROREA: serbitzariaren errorea."
 
-#: templates/base.html:48 templates/index.html:11
-msgid "Air quality monitoring stations"
-msgstr "Airearen kalitatearen estazioak"
+#: templates/base.html:57
+msgid "Index"
+msgstr "Hasiera"
 
-#: templates/base.html:49
-msgid "Air quality calculation"
-msgstr "Airearen kalitearen kalkulua"
-
-#: templates/base.html:50
+#: templates/base.html:58
 msgid "SNORQL Endpoint"
 msgstr "SNORQL Endpoint"
 
-#: templates/base.html:51
-msgid "SPARQL Endpoint (POST)"
-msgstr "SPARQL Endpoint (POST)"
-
-#: templates/base.html:52
+#: templates/base.html:59
 msgid "Documentation"
 msgstr "Dokumentazioa"
 
 #: templates/docs.html:8
+msgid "API"
+msgstr ""
+
+#: templates/docs.html:10
+#, python-format
+msgid ""
+" \n"
+"Data can be queried programatically through the SPARQL endpoint at %(url)s. "
+"The syntax is the following:\n"
+"<div class=\"well\">\n"
+" %(query)s\n"
+"</div>\n"
+msgstr ""
+" \n"
+"Datuak programatikoki kontsultatu daitezke SPARQL endpoint-aren bidez: %(url)s."
+"Sintaxia honelakoa da:\n"
+"<div class=\"well\">\n"
+" %(query)s\n"
+"</div>\n"
+
+#: templates/docs.html:18
+msgid "Source Code"
+msgstr ""
+
+#: templates/docs.html:21
 msgid "Data sources"
 msgstr "Datu iturburuak"
 
-#: templates/docs.html:9
+#: templates/docs.html:22
 #, python-format
 msgid ""
 "\n"
-"Source data extracted from %(start_url)s Basque Government's Environment and "
-"Regional Policy department%(end_url)s.\n"
+"Source data extracted from %(start_url)s Open Data Euskadi %(end_url)s.\n"
 msgstr ""
 "\n"
-"Jatorrizko datuak %(start_url)s Eusko Jaurlaritzako Ingurumen eta Lurralde "
-"Politika sailetik%(end_url)s aterata.\n"
+"Jatorrizko datuak %(start_url)s Open Data Euskaditik %(end_url)s aterata.\n"
 
-#: templates/docs.html:13
+#: templates/docs.html:26
 msgid "Data model"
 msgstr "Datu modeloa"
 
-#: templates/docs.html:15
+#: templates/docs.html:28
 #, python-format
 msgid ""
 "\n"
-"Data extration process and data model are described on the following paper "
+"Data extraction process and data model are described on the following paper "
 "(%(paper_url)s):\n"
 msgstr ""
 "\n"
 "Datuen erauzketaren and datu modeloaren deskribapena honako artikuluan aurki "
 "ditzakezu (%(paper_url)s):\n"
 
+#: templates/index.html:11
+msgid "Air quality monitoring stations and drinking water quality measurements"
+msgstr "Airearen eta edateko uraren kalitatearen estazioak"
+
 #: templates/index.html:14
 msgid ""
 "In this map you can find the air quality monitoring stations from Basque "
-"Country."
+"Country and the measurements done to ensure the quality of the drinking "
+"water."
 msgstr ""
 "Mapa honetan Euskal Autonomi Erkidegoko airearen kalitatea zaindu eta "
-"kontrolatzeko estazioen geolokalizazioa aurki ditzakezu."
+"kontrolatzeko estazioen geolokalizazioa aurki ditzakezu kontsumorako uren "
+"kalitatearekin batera"
 
 #: templates/index.html:15
-msgid "Click on each station to find its data about air quality:"
+msgid ""
+"Click on each marker to find the data about air or drinking water quality:"
 msgstr ""
-"Sakatu estazio bakoitzean bere airearen kalitateari buruzko datuak bilatzeko:"
+"Sakatu markatzaile bakoitzean airearen kontsumorako uren kalitateari buruzko "
+"eta datuak bilatzeko:"
 
-#: templates/index.html:64
+#: templates/index.html:66 templates/index.html.py:109
 msgid "Show details"
 msgstr "Xehetasun gehiago"
 
-#: templates/index.html:65
+#: templates/index.html:67
 msgid "More information in"
 msgstr "Informazio gehiago bere"
 
-#: templates/index.html:65
+#: templates/index.html:67
 msgid "its webpage"
 msgstr "web orrialdean"
 
-#: templates/station.html:24
+#: templates/station.html:25
 msgid "Select the stat you want to see:"
 msgstr "Aukeratu ikusi nahi duzun estatistika:"
 
-#: templates/station.html:40
+#: templates/station.html:41
 msgid "*About the limit value:"
 msgstr "*Gehienezko kontzentrazioari buruz:"
 
-#: templates/station.html:44
+#: templates/station.html:45
 msgid "Hour"
 msgstr "Ordua"
 
-#: templates/station.html:45
+#: templates/station.html:46
 msgid "Measurement"
 msgstr "Neurketa"
 
-#: templates/station.html:46
+#: templates/station.html:47
 msgid "RDF"
 msgstr "RDF"
 
-#: templates/station.html:60
+#: templates/station.html:61
 msgid "No results found"
 msgstr "Ez da inolako emaitzarik aurkitu."
+
+#: templates/water.html:12
+msgid "Parameter"
+msgstr "Parametroa"
+
+#: templates/water.html:31
+msgid "Submit"
+msgstr "Bidali"
+
+#: templates/water.html:38
+msgid "Date"
+msgstr "Data"
+
+#: templates/water.html:39 templates/water.html.py:87
+msgid "Municipality"
+msgstr "Udalerria"
+
+#: templates/water.html:40
+msgid "Sampling point"
+msgstr "Laginaketa-puntua"
+
+#: templates/water.html:41
+msgid "Point type"
+msgstr "Puntu mota"
+
+#: templates/water.html:42
+msgid "Laboratory"
+msgstr "Laborategia"
+
+#: templates/water.html:43
+msgid "Cause"
+msgstr "Arrazoia"
+
+#: templates/water.html:44
+msgid "Rating"
+msgstr "Kalifikazioa"
+
+#: templates/water.html:45
+msgid "Value"
+msgstr "Balioa"
+
+#: templates/water.html:91
+msgid "Province"
+msgstr "Probintzia"
+
+#: templates/water.html:95
+msgid "Element type"
+msgstr "Elementu mota"
+
+#~ msgid "Air quality calculation"
+#~ msgstr "Airearen kalitearen kalkulua"
+
+#, fuzzy
+#~ msgid "SPARQL Endpoint"
+#~ msgstr "SNORQL Endpoint"
+
+#~ msgid "Air quality monitoring stations"
+#~ msgstr "Airearen kalitatearen estazioak"
+
+#~ msgid "SPARQL Endpoint (POST)"
+#~ msgstr "SPARQL Endpoint (POST)"
